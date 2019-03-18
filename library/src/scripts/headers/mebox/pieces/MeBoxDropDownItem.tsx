@@ -11,7 +11,7 @@ import { noUserPhoto } from "@library/icons/header";
 import FlexSpacer from "@library/layout/FlexSpacer";
 import SmartLink from "@library/routing/links/SmartLink";
 import { meBoxMessageClasses } from "@library/headers/mebox/pieces/meBoxMessageStyles";
-import { metasClasses } from "@library/styles/metasStyles";
+import { metasClasses } from "@library/content/meta/metasStyles";
 import Translate from "@library/content/Translate";
 import DateTime from "@library/content/DateTime";
 import classNames from "classnames";

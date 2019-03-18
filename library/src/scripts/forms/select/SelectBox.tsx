@@ -13,7 +13,7 @@ import { dropDownClasses } from "@library/flyouts/dropDownStyles";
 import { selectBoxClasses } from "@library/forms/select/selectBoxStyles";
 import DropDown from "@library/flyouts/DropDown";
 import DropDownItemButton from "@library/flyouts/items/DropDownItemButton";
-import { metasClasses } from "@library/styles/metasStyles";
+import { metasClasses } from "@library/content/meta/metasStyles";
 import classNames from "classnames";
 import Frame from "@library/layout/frame/Frame";
 import FrameBody from "@library/layout/frame/FrameBody";

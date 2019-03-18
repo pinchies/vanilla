@@ -10,7 +10,7 @@ import { FOCUS_CLASS } from "@library/content/embeds/embedUtils";
 import { t } from "@library/utility/appUtils";
 import { attachmentClasses } from "@library/content/attachments/attachmentStyles";
 import { uniqueIDFromPrefix } from "@library/utility/idUtils";
-import { metasClasses } from "@library/styles/metasStyles";
+import { metasClasses } from "@library/content/meta/metasStyles";
 import CloseButton from "@library/navigation/CloseButton";
 import { attachmentIconClasses } from "@library/content/attachments/attachmentIconsStyles";
 import { fileUploadError } from "@library/icons/fileTypes";

@@ -20,7 +20,7 @@ import WebpackBar from "webpackbar";
  *
  * @param section - The section of the app to build. Eg. forum | admin | knowledge.
  */
-export async function makeBaseConfig(entryModel: EntryModel, section: string) {
+export async function makeBaseConfig(entryModel: EntryModel, section: string, withLoader = true) {
     const options = await getOptions();
 
     const modulePaths = [
@@ -159,7 +159,7 @@ ${chalk.green(aliases)}`;
     }
 
     // This is the only flag we are given by infrastructure to indicate we are in a lower memory environment.
-    if (!options.lowMemory) {
+    if (!options.lowMemory && withLoader) {
         config.plugins.push(
             new WebpackBar({
                 name: section,

@@ -11,7 +11,7 @@ import { capitalizeFirstLetter } from "@library/utility/utils";
 import { t } from "@library/utility/appUtils";
 import { PublishStatus } from "@library/@types/api/core";
 import BreadCrumbString, { ICrumbString } from "@library/navigation/BreadCrumbString";
-import { metasClasses } from "@library/styles/metasStyles";
+import { metasClasses } from "@library/content/meta/metasStyles";
 import Translate from "@library/content/Translate";
 import DateTime from "@library/content/DateTime";
 

@@ -6,8 +6,9 @@
 
 import { globalVariables } from "@library/styles/globalStyleVars";
 import { styleFactory, useThemeCache, variableFactory } from "@library/styles/styleUtils";
-import { allLinkStates, colorOut, margins, unit } from "@library/styles/styleHelpers";
-import { calc } from "csx";
+import { allLinkStates, colorOut, margins, unit, paddings, borders } from "@library/styles/styleHelpers";
+import { calc, ColorHelper } from "csx";
+import { NestedCSSProperties } from "typestyle/lib/types";
 
 export const metasVariables = useThemeCache(() => {
     const globalVars = globalVariables();
@@ -94,16 +95,21 @@ export const metasClasses = useThemeCache(() => {
         },
     });
 
-    const meta = style("meta", {
+    const metaMixin: NestedCSSProperties = {
         display: "inline-block",
         fontSize: unit(vars.fonts.size),
         color: colorOut(vars.colors.fg),
-        ...margins({
-            top: 0,
-            right: vars.spacing.default,
-            bottom: 0,
-            left: vars.spacing.default,
-        }),
+        lineHeight: globalVars.lineHeights.meta,
+    };
+
+    const metaMargins = margins({
+        top: 0,
+        right: vars.spacing.default,
+        bottom: 0,
+        left: vars.spacing.default,
+    });
+
+    const meta = style("meta", metaMixin, metaMargins, {
         $nest: {
             "& &": {
                 margin: 0,
@@ -112,15 +118,34 @@ export const metasClasses = useThemeCache(() => {
     });
 
     // Get styles of meta, without the margins
-    const metaStyle = style("metaStyles", {
-        display: "inline-block",
-        fontSize: unit(vars.fonts.size),
-        color: colorOut(vars.colors.fg),
-    });
+    const metaStyle = style("metaStyles", metaMixin);
+
+    const makeTagStyle = (tagColor: ColorHelper) =>
+        style(
+            "metaTag",
+            metaMixin,
+            paddings({
+                left: 3,
+                right: 3,
+                top: 2,
+                bottom: 2,
+            }),
+            borders({ color: tagColor, radius: 3 }),
+            {
+                display: "inline-block",
+                whiteSpace: "nowrap",
+                color: colorOut(tagColor),
+            },
+        );
+
+    const metaTag = makeTagStyle(vars.colors.fg);
+    const metaTagPrimary = makeTagStyle(globalVars.mainColors.primary);
 
     return {
         root,
         meta,
         metaStyle,
+        metaTag,
+        metaTagPrimary,
     };
 });

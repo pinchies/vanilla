@@ -9,7 +9,7 @@ import { attachmentIconsClasses } from "@library/content/attachments/attachmentI
 import { t } from "@library/utility/appUtils";
 import AttachmentIcon, { IAttachmentIcon } from "@library/content/attachments/AttachmentIcon";
 import { uniqueIDFromPrefix } from "@library/utility/idUtils";
-import { metasClasses } from "@library/styles/metasStyles";
+import { metasClasses } from "@library/content/meta/metasStyles";
 import Translate from "@library/content/Translate";
 import classNames from "classnames";
 

@@ -739,3 +739,16 @@ export const states = (styles: IActionStates) => {
         "&:active": { ...allStates, ...active },
     };
 };
+
+/**
+ * Nested a selector multiple times. This can be useful when trying to override another style, when you have no gaurentee of order.
+ */
+export const specific = (styles: NestedCSSProperties, nestingDepth = 2): NestedCSSProperties => {
+    const ands = "&".repeat(nestingDepth);
+
+    return {
+        $nest: {
+            [ands]: styles,
+        },
+    };
+};

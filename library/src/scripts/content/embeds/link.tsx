@@ -10,7 +10,7 @@ import { getData, setData } from "@library/dom/domUtils";
 import debounce from "lodash/debounce";
 import shave from "shave";
 import { registerEmbedComponent } from "@library/content/embeds/embedUtils";
-import { metasClasses } from "@library/styles/metasStyles";
+import { metasClasses } from "@library/content/meta/metasStyles";
 import classNames from "classnames";
 
 export function initLinkEmbeds() {

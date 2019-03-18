@@ -12,7 +12,7 @@ import { AttachmentType } from "@library/content/attachments/AttatchmentType";
 import { FOCUS_CLASS } from "@library/content/embeds/embedUtils";
 import { t } from "@library/utility/appUtils";
 import { attachmentClasses } from "@library/content/attachments/attachmentStyles";
-import { metasClasses } from "@library/styles/metasStyles";
+import { metasClasses } from "@library/content/meta/metasStyles";
 import { attachmentIconClasses } from "@library/content/attachments/attachmentIconsStyles";
 import classNames from "classnames";
 

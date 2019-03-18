@@ -8,7 +8,7 @@ import React from "react";
 import { IUserFragment } from "@library/@types/api/users";
 import DropDownItemMetas from "@library/flyouts/items/DropDownItemMetas";
 import DropDownItemMeta from "@library/flyouts/items/DropDownItemMeta";
-import { metasClasses } from "@library/styles/metasStyles";
+import { metasClasses } from "@library/content/meta/metasStyles";
 import Translate from "@library/content/Translate";
 import DateTime from "@library/content/DateTime";
 import ProfileLink from "@library/navigation/ProfileLink";

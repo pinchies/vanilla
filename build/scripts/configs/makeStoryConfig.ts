@@ -8,7 +8,6 @@ import { Configuration } from "webpack";
 import { makeBaseConfig } from "./makeBaseConfig";
 import EntryModel from "../utility/EntryModel";
 // tslint:disable
-const TSDocgenPlugin = require("react-docgen-typescript-webpack-plugin");
 const merge = require("webpack-merge");
 
 /**
@@ -17,7 +16,7 @@ const merge = require("webpack-merge");
  * @param section - The section of the app to build. Eg. forum | admin | knowledge.
  */
 export async function makeStoryConfig(baseStorybookConfig: any, entryModel: EntryModel) {
-    const baseConfig: Configuration = await makeBaseConfig(entryModel, "storybook");
+    const baseConfig: Configuration = await makeBaseConfig(entryModel, "storybook", false);
     baseConfig.mode = "development";
     baseConfig.optimization = {
         splitChunks: false,

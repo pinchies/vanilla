@@ -9,7 +9,7 @@ import { storiesOf } from "@storybook/react";
 import { select, date } from "@storybook/addon-knobs";
 import DateTime from "@library/content/DateTime";
 
-storiesOf("CoreComponents/DateTime", module).add("DateTime", () => {
+storiesOf("@library/content/DateTime", module).add("DateTime", () => {
     const mode = select(
         "mode",
         {

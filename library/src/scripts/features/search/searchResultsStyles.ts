@@ -15,7 +15,7 @@ import {
     unit,
 } from "@library/styles/styleHelpers";
 import { styleFactory, useThemeCache, variableFactory } from "@library/styles/styleUtils";
-import { metasVariables } from "@library/styles/metasStyles";
+import { metasVariables } from "@library/content/meta/metasStyles";
 import { calc, percent, px } from "csx";
 import { media } from "typestyle";
 
