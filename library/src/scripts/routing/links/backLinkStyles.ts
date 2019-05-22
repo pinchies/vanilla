@@ -69,10 +69,11 @@ const backLinkClasses = useThemeCache(() => {
         },
     });
 
-    const forHeading = style("forHeading", {
-        ...absolutePosition.topLeft(".5em"),
-        transform: `translateY(50%)`,
-    });
+    const forHeading = lineHeight => {
+        return style("forHeading", {
+            marginTop: lineHeight ? unit(lineHeight) : undefined,
+        });
+    };
 
     const label = style(
         "label",

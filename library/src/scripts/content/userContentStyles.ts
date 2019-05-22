@@ -282,8 +282,7 @@ export const userContentClasses = useThemeCache(() => {
             ...linkStyles,
             ...codeStyles,
             ...spoilersAndQuotes,
-        },
-    }) as NestedCSSProperties;
-
+        } as NestedCSSSelectors,
+    });
     return { root };
 });

@@ -18,6 +18,7 @@ export interface ICommonHeadingProps {
 
 export interface IHeadingProps extends ICommonHeadingProps {
     children?: React.ReactNode;
+    titleRef?: React.RefObject<HTMLHeadingElement>;
 }
 
 /**
@@ -40,6 +41,7 @@ export default class Heading extends React.Component<IHeadingProps> {
         return (
             <Tag
                 id={this.props.id}
+                ref={this.props.titleRef ? this.props.titleRef : undefined}
                 className={classNames(
                     "heading",
                     `heading-${this.renderAsDepth}`,
