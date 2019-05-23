@@ -7,6 +7,7 @@
 
 namespace VanillaTests\Library\Vanilla\Formatting\Quill;
 
+use PHP_CodeSniffer\Generators\Text;
 use Vanilla\Formatting\Quill\Blots\Embeds\ExternalBlot;
 use Vanilla\Formatting\Quill\Blots\Lines\HeadingTerminatorBlot;
 use Vanilla\Formatting\Quill\Blots\Lines\BlockquoteLineTerminatorBlot;
@@ -368,5 +369,36 @@ class ParserTest extends SharedBootstrapTestCase {
                 "name" => $name,
             ],
         ]];
+    }
+
+
+    public function testParseHeadings() {
+        $ops = [
+            ["insert" => "Some Text\n\nA Title"],
+            [["attributes" => ["header" => 2], "insert" => "\n"]],
+        ];
+
+        $parser = new Parser();
+        $parser->addBlot(HeadingTerminatorBlot::class);
+        $actual = $parser->parseIntoTestData($ops);
+
+        $expected = [
+            [
+                ["class" => TextBlot::class, "content" => "Some Text"],
+                ["class" => ParagraphLineTerminatorBlot::class, "content" => "\n"],
+            ],[
+                ["class" => ParagraphLineTerminatorBlot::class, "content" => "\n"],
+            ],[
+                ["class" => TextBlot::class, "content" => "A Title"],
+                ["class" => HeadingTerminatorBlot::class, "content" => "\n"],
+            ]
+        ];
+
+        $this->assertParseResults($ops, $expected);
+
+        /** @var Parser $parser */
+//        $parser = \Gdn::getContainer()->get(Parser::class);
+//        $actualUsernames = $parser->parseMentionUsernames($ops);
+//        $this->assertSame($expectedUsernames, $actualUsernames);
     }
 }
