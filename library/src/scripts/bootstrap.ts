@@ -6,7 +6,7 @@
  */
 
 import { onContent, getMeta, _executeReady, _mountComponents } from "@library/utility/appUtils";
-import { log, logError, debug } from "@vanilla/utils";
+import { logDebug, logError, debug } from "@vanilla/utils";
 import gdn from "@library/gdn";
 import apiv2 from "@library/apiv2";
 import { mountInputs } from "@library/forms/mountInputs";
@@ -18,10 +18,10 @@ debug(debugValue);
 // Export the API to the global object.
 gdn.apiv2 = apiv2;
 
-log("Bootstrapping");
+logDebug("Bootstrapping");
 _executeReady()
     .then(() => {
-        log("Bootstrapping complete.");
+        logDebug("Bootstrapping complete.");
         // Mount all data-react components.
         onContent(e => {
             _mountComponents(e.target);
