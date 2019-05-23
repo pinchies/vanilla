@@ -236,6 +236,7 @@ class Parser {
             }
 
             // Split up into an array of newlines (individual) and groups of all other characters.
+            // Here
             preg_match_all("/((\\n)+)|([^\\n]+)/", $op["insert"], $matches);
             $subInserts = $matches[0];
             if (count($subInserts) <= 1) {
