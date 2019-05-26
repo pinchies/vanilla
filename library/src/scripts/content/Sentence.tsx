@@ -64,7 +64,7 @@ export default class Sentence extends React.Component<ISentence> {
         const childCounter = this.props.counter! + 1;
 
         switch (word.type) {
-            case InlineTypes.DATETIME:
+            case InlineTypes.DATETIME: {
                 const time = word as IInlineDateTime;
                 return (
                     <time
@@ -81,16 +81,18 @@ export default class Sentence extends React.Component<ISentence> {
                     >
                         <Sentence
                             className={time.className}
-                            children={time.children}
                             counter={childCounter}
                             recursiveChildClass={classNames(
                                 this.props.recursiveChildClass,
                                 this.props.descendantChildClasses,
                             )}
-                        />
+                        >
+                            {time.children}
+                        </Sentence>
                     </time>
                 );
-            case InlineTypes.LINK:
+            }
+            case InlineTypes.LINK: {
                 const link = word as IInlineLink;
                 return (
                     <Link
@@ -107,16 +109,18 @@ export default class Sentence extends React.Component<ISentence> {
                     >
                         <Sentence
                             className={word.className}
-                            children={link.children}
                             counter={childCounter}
                             recursiveChildClass={classNames(
                                 this.props.recursiveChildClass,
                                 this.props.descendantChildClasses,
                             )}
-                        />
+                        >
+                            {link.children}
+                        </Sentence>
                     </Link>
                 );
-            default:
+            }
+            default: {
                 const text = word as IInlineText;
                 return (
                     <span
@@ -132,15 +136,17 @@ export default class Sentence extends React.Component<ISentence> {
                     >
                         <Sentence
                             className={word.className}
-                            children={text.children}
                             counter={childCounter}
                             recursiveChildClass={classNames(
                                 this.props.recursiveChildClass,
                                 this.props.descendantChildClasses,
                             )}
-                        />
+                        >
+                            {text.children}
+                        </Sentence>
                     </span>
                 );
+            }
         }
     }
 

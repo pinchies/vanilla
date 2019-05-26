@@ -492,7 +492,7 @@ export function mountReact(
         target.parentElement!.insertBefore(container, target);
         mountPoint = container;
     }
-    const result = ReactDOM.render(component, mountPoint, () => {
+    ReactDOM.render(component, mountPoint, () => {
         if (cleanupContainer) {
             target.remove();
             if (cleanupContainer.firstElementChild) {
@@ -504,5 +504,4 @@ export function mountReact(
         callback && callback();
     });
     forceRenderStyles();
-    return result;
 }
