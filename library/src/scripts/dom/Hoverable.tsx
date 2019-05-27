@@ -54,7 +54,7 @@ export default class Hoverable extends React.Component<IProps> {
         this.dismissTimeout();
     }
 
-    private hoverTimeout: NodeJS.Timeout;
+    private hoverTimeout: NodeJS.Timeout | null = null;
     private hasExecuted = false;
 
     /**

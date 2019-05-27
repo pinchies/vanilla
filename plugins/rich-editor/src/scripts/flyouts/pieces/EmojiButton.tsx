@@ -32,7 +32,7 @@ interface IProps extends IWithEditorProps {
 export class EmojiButton extends React.Component<IProps> {
     private emojiChar: string;
     private quill: Quill;
-    private domButton: HTMLButtonElement;
+    private domButton: HTMLButtonElement | null = null;
 
     constructor(props) {
         super(props);

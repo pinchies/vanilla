@@ -55,7 +55,7 @@ export default class Loader extends React.Component<IProps, IState> {
         );
     }
 
-    private timeout: NodeJS.Timeout;
+    private timeout: NodeJS.Timeout | null = null;
 
     public componentDidMount() {
         const duration = this.props.minimumTime || 150;

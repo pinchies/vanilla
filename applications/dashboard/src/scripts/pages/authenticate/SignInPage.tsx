@@ -7,7 +7,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { t } from "@library/utility/appUtils";
 import { LoadStatus } from "@library/@types/api/core";
-import { getRequiredID, IRequiredComponentID } from "@library/utility/idUtils";
+import { getRequiredID, IRequiredComponentID, uniqueIDFromPrefix } from "@library/utility/idUtils";
 import DocumentTitle from "@library/routing/DocumentTitle";
 import Or from "@dashboard/components/forms/Or";
 import { IStoreState, IAuthenticatorState } from "@dashboard/@types/state";
@@ -20,18 +20,11 @@ interface IProps {
     loadAuthenticators: typeof getUserAuthenticators;
 }
 
-export class SignInPage extends React.Component<IProps, IRequiredComponentID> {
-    public pageTitleID: string;
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            id: getRequiredID(props, "SignInPage"),
-        };
-    }
+export class SignInPage extends React.Component<IProps> {
+    private id = uniqueIDFromPrefix("SignInPage");
 
     get titleID(): string {
-        return this.state.id + "-pageTitle";
+        return this.id + "-pageTitle";
     }
 
     public componentDidMount() {
@@ -58,7 +51,7 @@ export class SignInPage extends React.Component<IProps, IRequiredComponentID> {
         });
 
         return (
-            <div id={this.state.id} className="authenticateUserCol">
+            <div id={this.id} className="authenticateUserCol">
                 <DocumentTitle title={t("Sign In")}>
                     <h1 id={this.titleID} className="isCentered">
                         {t("Sign In")}

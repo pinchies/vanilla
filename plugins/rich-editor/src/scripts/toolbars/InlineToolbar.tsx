@@ -37,7 +37,7 @@ export class InlineToolbar extends React.PureComponent<IProps, IState> {
     private quill: Quill;
     private linkInput: React.RefObject<HTMLInputElement> = React.createRef();
     private selfRef: React.RefObject<HTMLDivElement> = React.createRef();
-    private focusWatcher: FocusWatcher;
+    private focusWatcher: FocusWatcher | null = null;
 
     /**
      * Temporaly remove the focus requirement on the toolbar so we can focus it.

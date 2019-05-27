@@ -29,6 +29,9 @@ module.exports = {
         "getter-return": "off",
         "no-dupe-class-members": "off",
 
+        // React
+        "react/state-in-constructor": ["error", "never"],
+
         // Typescript specific rules
         "@typescript-eslint/ban-types": [
             "error",

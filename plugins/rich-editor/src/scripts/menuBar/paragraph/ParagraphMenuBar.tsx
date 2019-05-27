@@ -87,20 +87,18 @@ export default class ParagraphMenuBar extends React.Component<IProps, IState> {
         specialBlockMenuOpen: false,
     };
 
-    private itemCount: number;
     private openTabFunctions;
     private menuBarLetterIndex: string[] = [];
 
-    public render() {
-        const { menuActiveFormats, formatter } = this.props;
-        const classes = richEditorClasses(this.props.legacyMode);
+    private get menuContents(): IMenuBarContent[] {
         const globalStyles = globalVariables();
+        const { menuActiveFormats, formatter } = this.props;
+
         const iconStyle = style({
             width: unit(globalStyles.icon.sizes.default),
             height: unit(globalStyles.icon.sizes.default),
         });
-
-        const menuContents: IMenuBarContent[] = [
+        return [
             {
                 component: ParagraphMenuHeadingsTabContent,
                 accessibleInstructions: t("Headings Menu"),
@@ -204,12 +202,20 @@ export default class ParagraphMenuBar extends React.Component<IProps, IState> {
                 ],
             },
         ];
+    }
 
-        this.itemCount = menuContents.length + 1;
+    private get itemCount(): number {
+        return this.menuContents.length + 1;
+    }
+
+    public render() {
+        const { formatter } = this.props;
+        const classes = richEditorClasses(this.props.legacyMode);
+
         const panelContent: JSX.Element[] = [];
         this.openTabFunctions = [];
 
-        const menus = menuContents.map((menu, index) => {
+        const menus = this.menuContents.map((menu, index) => {
             const MyContent = menu.component;
             const myRovingIndex = () => {
                 this.props.setRovingIndex(index);
@@ -261,7 +267,7 @@ export default class ParagraphMenuBar extends React.Component<IProps, IState> {
             );
         });
 
-        const paragraphIndex = menuContents.length;
+        const paragraphIndex = this.menuContents.length;
         const setParagraphIndex = () => {
             this.props.setRovingIndex(0);
         };

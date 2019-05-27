@@ -30,6 +30,10 @@ export default class VanillaTheme extends ThemeBase {
         };
 
         super(quill, themeOptions);
+        this.lastGoodSelection = {
+            index: 0,
+            length: 0,
+        };
         this.applyLastSelectionHack();
 
         this.quill.root.classList.add(classesRichEditor.text);
@@ -56,11 +60,6 @@ export default class VanillaTheme extends ThemeBase {
      * This should be handled properly after forking.
      */
     private applyLastSelectionHack() {
-        this.lastGoodSelection = {
-            index: 0,
-            length: 0,
-        };
-
         // Track user selection events.
         this.quill.on("selection-change", (range, oldRange, source) => {
             if (range && source !== Quill.sources.SILENT) {

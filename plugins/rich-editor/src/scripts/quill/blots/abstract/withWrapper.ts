@@ -23,7 +23,6 @@ export interface IWrappable extends Container {
  */
 export default function withWrapper(blotConstructor: typeof Block) {
     class BlotWithWrapper extends blotConstructor {
-        public parent: WrapperBlot;
         protected useWrapperReplacement = true;
 
         public constructor(domNode) {

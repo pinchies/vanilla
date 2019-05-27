@@ -19,6 +19,7 @@ import EmojiButton from "@rich-editor/flyouts/pieces/EmojiButton";
 import Flyout from "@rich-editor/flyouts/pieces/Flyout";
 import { richEditorClasses } from "@rich-editor/editor/richEditorClasses";
 import { richEditorVariables } from "@rich-editor/editor/richEditorVariables";
+import { uniqueIDFromPrefix } from "@library/utility/idUtils";
 
 const BUTTON_SIZE = richEditorVariables().sizing.emojiSize;
 const COL_SIZE = 8;
@@ -59,24 +60,19 @@ interface IState {
 }
 
 export class EmojiPicker extends React.PureComponent<IProps, IState> {
-    private categoryPickerID: string;
-    private gridEl: Grid;
+    private categoryPickerID = uniqueIDFromPrefix("emojiPicker-categories-");
+    private gridEl: Grid | null = null;
     private lastRowIndex = this.getRowFromIndex(EMOJIS.length);
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            id: props.id,
-            contentID: props.contentID,
-            activeIndex: 0,
-            title: t("Emojis"),
-            scrollToRow: 0,
-            rowStartIndex: 0,
-            selectedGroupIndex: 0,
-        };
-
-        this.categoryPickerID = "emojiPicker-categories-" + props.editorID;
-    }
+    public state: IState = {
+        id: this.props.id,
+        contentID: this.props.contentID,
+        activeIndex: 0,
+        title: t("Emojis"),
+        scrollToRow: 0,
+        rowStartIndex: 0,
+        selectedGroupIndex: 0,
+    };
 
     get descriptionID(): string {
         return this.state.id + "-description";
@@ -272,7 +268,7 @@ export class EmojiPicker extends React.PureComponent<IProps, IState> {
             scrollToRow = targetRowPosition;
         }
         this.setState({ activeIndex: targetFocusPosition, scrollToRow }, () => {
-            this.gridEl.forceUpdate();
+            this.gridEl && this.gridEl.forceUpdate();
         });
     };
 

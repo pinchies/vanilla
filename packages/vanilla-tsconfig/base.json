@@ -6,6 +6,7 @@
         "allowSyntheticDefaultImports": true,
         "moduleResolution": "node",
         "strictNullChecks": true,
+        "strictPropertyInitialization": true,
         "target": "esnext",
         "module": "esnext",
         "isolatedModules": false,

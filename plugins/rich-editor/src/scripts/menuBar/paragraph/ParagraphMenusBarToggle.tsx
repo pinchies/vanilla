@@ -64,7 +64,13 @@ export class ParagraphMenusBarToggle extends React.PureComponent<IProps, IState>
     private buttonRef: React.RefObject<HTMLButtonElement> = React.createRef();
     private menusRef: React.RefObject<HTMLDivElement> = React.createRef();
     private panelsRef: React.RefObject<HTMLDivElement> = React.createRef();
-    private focusWatcher: FocusWatcher;
+    private focusWatcher: FocusWatcher | null = null;
+
+    public state: IState = {
+        hasFocus: false,
+        rovingTabIndex: 0,
+        // activeMenu: null,
+    };
 
     constructor(props: IProps) {
         super(props);
@@ -75,11 +81,6 @@ export class ParagraphMenusBarToggle extends React.PureComponent<IProps, IState>
         this.componentID = this.ID + "-component";
         this.menuID = this.ID + "-menu";
         this.buttonID = this.ID + "-button";
-        this.state = {
-            hasFocus: false,
-            rovingTabIndex: 0,
-            // activeMenu: null,
-        };
     }
 
     /**
@@ -98,7 +99,7 @@ export class ParagraphMenusBarToggle extends React.PureComponent<IProps, IState>
      * @inheritDoc
      */
     public componentWillUnmount() {
-        this.focusWatcher.stop();
+        this.focusWatcher && this.focusWatcher.stop();
     }
 
     /**
