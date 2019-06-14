@@ -17,11 +17,13 @@ class HttpStrictTransportSecurityModel {
     const INCLUDE_SUBDOMAINS = 'includeSubDomains';
     const PRELOAD = 'preload';
 
+    const ENABLED_KEY = 'Garden.Security.Hsts.Enabled';
     const MAX_AGE_KEY = 'Garden.Security.Hsts.MaxAge';
     const INCLUDE_SUBDOMAINS_KEY = 'Garden.Security.Hsts.IncludeSubDomains';
     const PRELOAD_KEY = 'Garden.Security.Hsts.Preload';
 
     const DEFAULT_TTL = 604800; // 1 week
+    const DEFAULT_ENABLED = false;
     const DEFAULT_INCLUDE_SUBDOMAINS = false;
     const DEFAULT_PRELOAD = false;
 
@@ -44,16 +46,28 @@ class HttpStrictTransportSecurityModel {
      * @return string
      */
     public function getHsts(): string {
-        $hsts[] = self::MAX_AGE.'='.$this->getMaxAge();
-        if ($this->includeSubDomains()) {
-            $hsts[] = self::INCLUDE_SUBDOMAINS;
+        $hsts = [];
+        if ($this->enabled()) {
+            $hsts[] = self::MAX_AGE.'='.$this->getMaxAge();
+            if ($this->includeSubDomains()) {
+                $hsts[] = self::INCLUDE_SUBDOMAINS;
+            }
+            if ($this->preload()) {
+                $hsts[] = self::PRELOAD;
+            }
         }
-        if ($this->preload()) {
-            $hsts[] = self::PRELOAD;
-        }
-
         return implode('; ', $hsts);
     }
+
+    /**
+     * Check if HSTS is enabled.
+     *
+     * @return int
+     */
+    private function enabled(): bool {
+        return $this->config->get(self::ENABLED_KEY, self::DEFAULT_ENABLED);
+    }
+
 
     /**
      * Get max-age HSTS directive value.

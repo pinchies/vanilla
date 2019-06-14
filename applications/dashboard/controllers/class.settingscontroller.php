@@ -728,6 +728,7 @@ class SettingsController extends DashboardController {
         $configurationModel->setField([
             'Garden.TrustedDomains',
             'Garden.Format.WarnLeaving',
+            HstsModel::ENABLED_KEY,
             HstsModel::MAX_AGE_KEY,
             HstsModel::INCLUDE_SUBDOMAINS_KEY,
             HstsModel::PRELOAD_KEY,
@@ -757,6 +758,7 @@ class SettingsController extends DashboardController {
             $this->Form->setFormValue('Garden.TrustedDomains', $trustedDomains);
             $this->Form->setFormValue('Garden.Format.DisableUrlEmbeds', $this->Form->getValue('Garden.Format.DisableUrlEmbeds') !== '1');
 
+            $this->Form->setFormValue(HstsModel::ENABLED_KEY, $this->Form->getValue(HstsModel::ENABLED_KEY) === '1');
             $this->Form->setFormValue(HstsModel::INCLUDE_SUBDOMAINS_KEY, $this->Form->getValue(HstsModel::INCLUDE_SUBDOMAINS_KEY) === '1');
             $this->Form->setFormValue(HstsModel::PRELOAD_KEY, $this->Form->getValue(HstsModel::PRELOAD_KEY) === '1');
 
